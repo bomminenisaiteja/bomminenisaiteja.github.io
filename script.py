@@ -62,6 +62,7 @@ fig8 = go.Figure(
             x=df["STATE/UT"],
             y=df["DECEASED"],
             offsetgroup=1,
+	base=df["DECEASED"],
         )
     ],
     layout=go.Layout(
