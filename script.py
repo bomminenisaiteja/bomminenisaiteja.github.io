@@ -43,7 +43,6 @@ df=df.rename(index=str,columns={df.columns[4]:"DECEASED"})
 df=df.rename(index=str,columns={df.columns[1]:"STATE/UT"})
 df["ACTIVE"]=df["CONFIRMED"]-df["RECOVERED"]-df["DECEASED"]
 df['STATE/UT'] = df['STATE/UT'].astype('str')
-df
 
 
 x = df["STATE/UT"]
