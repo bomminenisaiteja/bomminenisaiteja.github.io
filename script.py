@@ -42,13 +42,33 @@ df=df.rename(index=str,columns={df.columns[3]:"RECOVERED"})
 df=df.rename(index=str,columns={df.columns[4]:"DECEASED"})
 df=df.rename(index=str,columns={df.columns[1]:"STATE/UT"})
 
-x = df["STATE/UT"]
 
-fig8 = go.Figure()
-fig8.add_trace(go.Bar(x=x, y=df["CONFIRMED"],name="CONFIRMED"))
-fig8.add_trace(go.Bar(x=x, y=df["RECOVERED"],name="RECOVERED"))
-fig8.add_trace(go.Bar(x=x, y=df["DECEASED"],name="DECEASED"))
-fig8.update_layout(barmode='group', title_text='COVID19 INDIA')
+fig8 = go.Figure(
+    data=[
+        go.Bar(
+            name="CONFIRMED",
+            x=df["STATE/UT"],
+            y=df["CONFIRMED"],
+            offsetgroup=1,
+        ),
+        go.Bar(
+            name="RECOVERED",
+            x=df["STATE/UT"],
+            y=df["RECOVERED"],
+            offsetgroup=1,
+        ),
+        go.Bar(
+            name="DECEASED",
+            x=df["STATE/UT"],
+            y=df["DECEASED"],
+            offsetgroup=1,
+        )
+    ],
+    layout=go.Layout(
+        title="COVID19",
+        yaxis_title="CASES"
+    )
+)
 html = df.to_html()
 fig=fig8.to_html()
 with open("file.html", "w") as file:
