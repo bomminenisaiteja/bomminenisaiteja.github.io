@@ -52,16 +52,18 @@ fig8.add_trace(go.Bar(x=x, y=df["ACTIVE"],name="ACTIVE"))
 fig8.add_trace(go.Bar(x=x, y=df["RECOVERED"],name="RECOVERED"))
 fig8.add_trace(go.Bar(x=x, y=df["DECEASED"],name="DECEASED"))
 fig8.update_layout(barmode='relative', title_text='COVID19 INDIA')
+fig4=px.pie(df,names="STATE/UT",values="CONFIRMED")
 html = df.to_html()
 fig=fig8.to_html()
-with open("file.html", "w") as file:
-    file.write(html)
+fig2=fig4.to_html()
+with open("file1.html", "w") as file1:
+    file1.write(html)
 with open("file2.html","w") as file2:
     file2.write(fig)
 data = data2 = ""
 
 # Reading data from file1
-with open('file.html') as fp:
+with open('file1.html') as fp:
     data = fp.read()
 
 # Reading data from file2
@@ -74,5 +76,25 @@ with open('file2.html') as fp:
 data += "\n"
 data += data2
 
-with open('index.html', 'w') as fp:
+with open('file3.html', 'w') as fp:
     fp.write(data)
+with open("file4.html","w") as file2:
+    file2.write(fig2)
+data = data2 = "" 
+  
+# Reading data from file1 
+with open('file3.html') as fp: 
+    data = fp.read() 
+  
+# Reading data from file2 
+with open('file4.html') as fp: 
+    data2 = fp.read() 
+  
+# Merging 2 files 
+# To add the data of file2 
+# from next line 
+data += "\n"
+data += data2 
+  
+with open ('index.html', 'w') as fp: 
+    fp.write(data) 
