@@ -49,8 +49,8 @@ x = df["STATE/UT"]
 
 fig8 = go.Figure()
 fig8.add_trace(go.Bar(x=x, y=df["ACTIVE"],name="ACTIVE"))
-fig8.add_trace(go.Bar(x=x, y=df["RECOVERED"],name="RECOVERED"))
-fig8.add_trace(go.Bar(x=x, y=df["DECEASED"],text=df["CONFIRMED"],textposition='outside',name="DECEASED"))
+fig8.add_trace(go.Bar(x=x, y=df["RECOVERED"],name="RECOVERED",marker_color="GREEN"))
+fig8.add_trace(go.Bar(x=x, y=df["DECEASED"],text=df["CONFIRMED"],textposition='outside',name="DECEASED",marker_color="RED"))
 fig8.update_layout(barmode='stack', title_text='COVID19 INDIA')
 fig4=px.pie(df,names="STATE/UT",values="ACTIVE")
 html = df.to_html()
