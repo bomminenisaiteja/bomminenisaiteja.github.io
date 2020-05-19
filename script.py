@@ -37,6 +37,7 @@ for j in range(1,len(tr_elements)):
         i+=1
 Dict={title:column for (title,column) in col}
 df=pd.DataFrame(Dict)
+df=df[:33]
 df=df.rename(index=str,columns={df.columns[2]:"CONFIRMED"})
 df=df.rename(index=str,columns={df.columns[3]:"RECOVERED"})
 df=df.rename(index=str,columns={df.columns[4]:"DECEASED"})
