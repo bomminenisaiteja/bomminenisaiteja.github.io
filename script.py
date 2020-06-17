@@ -23,7 +23,7 @@ for t in tr_elements[0]:
     col.append((name,[]))
 for j in range(1,len(tr_elements)):
     T=tr_elements[j]
-    if len(T)!=5:
+    if len(T)!=6:
         break
     i=0
     for t in T.iterchildren():
@@ -42,18 +42,17 @@ df=df.rename(index=str,columns={df.columns[2]:"CONFIRMED"})
 df=df.rename(index=str,columns={df.columns[3]:"RECOVERED"})
 df=df.rename(index=str,columns={df.columns[4]:"DECEASED"})
 df=df.rename(index=str,columns={df.columns[1]:"STATE/UT"})
-df["ACTIVE"]=df["CONFIRMED"]-df["RECOVERED"]-df["DECEASED"]
 df['STATE/UT'] = df['STATE/UT'].astype('str')
 
 
 x = df["STATE/UT"]
 
 fig8 = go.Figure()
-fig8.add_trace(go.Bar(x=x, y=df["ACTIVE"],name="ACTIVE"))
+fig8.add_trace(go.Bar(x=x, y=df["CONFIRMED"],name="CONFIRMED"))
 fig8.add_trace(go.Bar(x=x, y=df["RECOVERED"],name="RECOVERED",marker_color="GREEN"))
 fig8.add_trace(go.Bar(x=x, y=df["DECEASED"],text=df["CONFIRMED"],textposition='outside',name="DECEASED",marker_color="RED"))
 fig8.update_layout(barmode='stack', title_text='COVID19 INDIA')
-fig4=px.pie(df,names="STATE/UT",values="ACTIVE")
+fig4=px.pie(df,names="STATE/UT",values="CONFIRMED")
 html = df.to_html()
 fig=fig8.to_html()
 fig2=fig4.to_html()
